@@ -1,0 +1,29 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: 127.0.0.1
+  username: job-search-backend
+  password: 619310
+
+development:
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: 127.0.0.1
+  username: job-search-backend
+  password: 619310
+  database: job_search_backend_2_development
+
+test:
+  <<: *default
+  database: job_search_backend_2_test
+
+production:
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
+  database: <%= ENV['DATABASE_URL'] %>
+  host: <%= URI.parse(ENV['DATABASE_URL']).host %>
+  username: <%= URI.parse(ENV['DATABASE_URL']).user %>
+  password: <%= URI.parse(ENV['DATABASE_URL']).password %>
+  port: <%= URI.parse(ENV['DATABASE_URL']).port %>
