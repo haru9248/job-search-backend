@@ -7,12 +7,15 @@ class JobsController < ApplicationController
     else
       render json: { errors: job.errors.full_messages }, status: :unprocessable_entity
     end
+    response.set_header('Access-Control-Allow-Origin', 'https://job-search-frontend-9kqr.vercel.app')
   end
 
   #GET /jobs
   def index
     jobs = Job.all
     render json: jobs
+
+    response.set_header('Access-Control-Allow-Origin', 'https://job-search-frontend-9kqr.vercel.app')
   end
 
   private
@@ -20,7 +23,7 @@ class JobsController < ApplicationController
   def job_params
     params.require(:job).permit(:title, :salary, :category)
   end
-  
+
   def sanitize_salary(salary)
     return 0 unless salary.present?
 

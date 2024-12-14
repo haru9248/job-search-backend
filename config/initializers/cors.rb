@@ -5,12 +5,14 @@
 
 # Read more: https://github.com/cyu/rack-cors
 
-Rails.application.config.middleware.insert_before 0, Rack::Cors do
-   allow do
-     origins 'https://job-search-frontend-j4o4.vercel.app'
+# config/initializers/cors.rb
 
-     resource '*',
-       headers: :any,
-       methods: [:get, :post, :options]
-end
+Rails.application.config.middleware.insert_before 0, Rack::Cors do
+  allow do
+    origins 'https://job-search-frontend-9kqr.vercel.app'
+
+    resource '*',
+      headers: :any,
+      methods: [:get, :post, :options]
+  end
 end
